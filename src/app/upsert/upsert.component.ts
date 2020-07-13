@@ -5,14 +5,15 @@ import { Store } from "@ngrx/store";
 import { UserState } from "../ngrx/entities";
 import { UpsertUser } from "../ngrx/actions";
 
+const createNewUser = (): User => ({ username: "", displayName: "" });
+
 @Component({
   selector: "app-upsert",
   templateUrl: "./upsert.component.html",
   styleUrls: ["./upsert.component.scss"],
 })
 export class UpsertComponent implements OnInit {
-  user: User = { username: "", displayName: "" };
-  userForm: FormGroup;
+  user: User = createNewUser();
 
   constructor(private store: Store<UserState>) {}
 
@@ -20,5 +21,6 @@ export class UpsertComponent implements OnInit {
 
   submit() {
     this.store.dispatch(new UpsertUser(this.user));
+    this.user = createNewUser();
   }
 }

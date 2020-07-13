@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header>Upsert User</mat-card-header>
   <mat-card-content>
-    <form #f="ngForm">
+    <form #userForm="ngForm">
       <mat-form-field>
         <mat-label>Username</mat-label>
         <input
@@ -23,9 +23,13 @@
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button [disabled]="f.invalid || f.pristine" (click)="submit()">
+    <button
+      mat-button
+      [disabled]="userForm.invalid || userForm.pristine"
+      (click)="submit()"
+    >
       Add User
     </button>
-    <button mat-button (click)="f.resetForm()">Clear</button>
+    <button mat-button (click)="userForm.resetForm()">Clear</button>
   </mat-card-actions>
 </mat-card>
